@@ -18,7 +18,7 @@
 }
 .individualDiv{
     display:flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 .songSearchBarDiv{
     display:flex;
@@ -30,4 +30,23 @@
 p{
     margin:6px;
     font-size:16px;
+}
+button{
+    margin:6px;
+    font-size:16px;
+}
+
+
+
+
+.renderLyrics{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.lyricsLine{
+    display: flex;
 }
