@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-
+import './lyrics.css'
+import MOCK_DATA from '../MOCK_DATA.json'
 
 const dummyData = [
     {
@@ -16,7 +17,31 @@ const dummyData = [
         songName: "Test", author: "Test", totalTime: 144,
         lyrics: [
             { lineNumber: 1, words: "Test", startTime: 0, endTime: 69 },
-            
+
+            //rest of song lyrics...
+        ],
+    },
+    {
+        songName: "Doo", author: "Dee", totalTime: 144,
+        lyrics: [
+            { lineNumber: 1, words: "Test", startTime: 0, endTime: 69 },
+
+            //rest of song lyrics...
+        ],
+    },
+    {
+        songName: "Free", author: "Willie", totalTime: 144,
+        lyrics: [
+            { lineNumber: 1, words: "Test", startTime: 0, endTime: 69 },
+
+            //rest of song lyrics...
+        ],
+    },
+    {
+        songName: "How", author: "Bow", totalTime: 144,
+        lyrics: [
+            { lineNumber: 1, words: "Test", startTime: 0, endTime: 69 },
+
             //rest of song lyrics...
         ],
     }
@@ -24,23 +49,38 @@ const dummyData = [
 
 
 const DisplayLyricsList = () => {
-
-    const [songs, setSongs] = useState(dummyData)
+    const [searchTerm, setSearchTerm] = useState('');
+    const [songs, setSongs] = useState(MOCK_DATA)
 
     function testClick() {
-        console.log(songs[0].author);
+
     }
 
 
 
     return (
         <div className='displaySongsDiv' >
-            <button onClick={testClick}> TestButton </button>
+
             <div className='songSearchBarDiv'>
-                {/*add a searchbar here*/}
+                <h2>Searchbar</h2>
+                <input type='text' placeholder="Search..." onChange={event => { setSearchTerm(event.target.value) }} />
+                <div className='search'>
+                </div>
             </div>
-            <div>
-                {/*display all songs here*/}
+            <div className='mappedSongs'>
+                {songs.filter((value) => {
+                    if(searchTerm === ''){
+                        return value
+                    }
+                    else if((value.author.toLowerCase().includes(searchTerm.toLowerCase()) || value.songName.toLowerCase().includes(searchTerm.toLowerCase()) )){
+                        return value
+                    }
+                }).map((value, key) => {
+                    return <div className='individualDiv'>
+                        <p>{value.author}</p>
+                        <p>{value.songName}</p>
+                    </div>
+                })}
             </div>
 
         </div>

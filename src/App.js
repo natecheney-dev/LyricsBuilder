@@ -1,4 +1,4 @@
-import './index.css'
+import './App.css'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import DisplayLyricsList from './components/DisplayLyricsList';
 import Nav from './components/Nav';
