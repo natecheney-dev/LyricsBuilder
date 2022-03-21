@@ -2,19 +2,22 @@ import React, { useEffect, useState } from 'react'
 import './lyrics.css'
 import MOCK_DATA from '../MOCK_DATA.json'
 import { useNavigate } from 'react-router'
+import { connect } from 'react-redux';
+import { addSong } from '../redux/actions';
 
 
 
 
-const DisplayLyricsList = () => {
+const DisplayLyricsList = (props) => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [songs, setSongs] = useState(MOCK_DATA)
+    const [songsList, setSongsList] = useState(props.songs)
     let navigate = useNavigate();
 
     function routeToPlay(e) {
         navigate('/song', { state: MOCK_DATA[e.target.value]})
     }
 
+    console.log(props.songs);
 
 
     return (
@@ -27,7 +30,7 @@ const DisplayLyricsList = () => {
                 </div>
             </div>
             <div className='mappedSongs'>
-                {songs.filter((value, key) => {
+                {songsList.filter((value, key) => {
                     if (searchTerm === '') {
                         return value
                     }
@@ -45,10 +48,11 @@ const DisplayLyricsList = () => {
 
         </div>
     )
-
-
-
-
+}
+const mapStateToProps = state => {
+    return {
+        songs: state.songs
+    }
 }
 
-export default DisplayLyricsList;
+export default connect(mapStateToProps, { addSong })(DisplayLyricsList);

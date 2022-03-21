@@ -6,51 +6,98 @@ import MOCK_DATA from '../MOCK_DATA.json'
 
 const AddSong = (props) => {
 
+    const [time, setTime] = useState({
+        time_minutes: '',
+        time_seconds: '',
+    })
 
     const [songState, setSongState] = useState({
-        id: Date.now(),
+        id: '',
         songName: '',
         author: '',
-        totalTime: '',
-        lyrics: []
     })
-    const [lyricsState, setLyricsState] = useState([{ lineNumber: '', words: '' },])
-    const [counter, setCounter] = useState(1)
+    const [lyricsState, setLyricsState] = useState([])
+    const [counter, setCounter] = useState(0)
+    const [itemVals, setItemVal] = useState([])
+    
+    console.log(itemVals)
 
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('test123')
+
+        const time_added = parseInt(time.time_minutes * 60) + parseInt(time.time_seconds);
+
+
+        // setMerged({
+        //     ...merged,
+        //     id: Date.now(),
+        //     songName: songState.songName,
+        //     author: songState.author,
+        //     totalTime: time_added,
+        //     lyrics: lyricsState
+        // })
+        const merged = {
+            id: Date.now(),
+            songName: songState.songName,
+            author: songState.author,
+            totalTime: time_added,
+            lyrics: lyricsState
+        }
+
+        props.addSong(merged);
+
+        setTime({
+            time_minutes: '',
+            time_seconds: '',
+        })
+
+        setSongState({
+            id: '',
+            songName: '',
+            author: '',
+        })
+
+        setLyricsState([])
+
+        
+
+        setCounter(0)
+
     }
     const handleChange = e => {
-       
-
-
-
+        setSongState({
+            ...songState,
+            [e.target.name]: e.target.value
+        });
     }
+
+    const handleTime = e => {
+        setTime({
+            ...time,
+            [e.target.name]: e.target.value
+        })
+    }
+
     const handleLyricsChange = (index, event) => {
-        
-        const values = [...lyricsState];
-        values[index][event.target.name] = event.target.value;
-        values[index].lineNumber = index + 1;
-        setLyricsState(values);
+        console.log(itemVals);
+        setItemVal([...lyricsState]);
+        itemVals[index][event.target.name] = event.target.value;
+        itemVals[index].lineNumber = index + 1;
+        setLyricsState(itemVals);
+        setCounter(index);
 
-        // setLyricsState([
-        //     ...lyricsState,
-        //     lyricsState[index][event.target.name] = event.target.value,
-        //     lyricsState[index].lineNumber = index + 1,
-        // ])
-        
     }
-    const handleAddLine = () =>{
-        setLyricsState([...lyricsState, {lineNumber: '', words: ''}])
+    const handleAddLine = () => {
+        setLyricsState([...lyricsState, { lineNumber: '', words: '' }])
     }
 
-    const handleDelLine = (index) =>{
+    const handleDelLine = () => {
         const values = [...lyricsState];
-        values.splice(index, 1);
+        values.splice(counter, 1);
         setLyricsState(values);
+        setCounter(counter - 1)
     };
 
 
@@ -61,22 +108,25 @@ const AddSong = (props) => {
                 <input onChange={handleChange} value={songState.songName} name="songName" id="songName" />
                 <label htmlFor='author'>Author:</label>
                 <input onChange={handleChange} value={songState.author} name="author" id="author" />
-                <label htmlFor='totalTime'>Total Time Length:</label>
-                <input onChange={handleChange} value={songState.totalTime} name="totalTime" id="totalTime" />
-
+                <div className='time_div'>
+                    <label htmlFor='totalTime'>Total Time Length:</label>
+                    <input onChange={handleTime} placeholder="Minutes" value={time.time_minutes} name="time_minutes" id="time_minutes" />
+                    <input onChange={handleTime} placeholder="Seconds" value={time.time_seconds} name="time_seconds" id="time_seconds" />
+                </div>
                 <div className='lyrics_div'>
+                <label htmlFor='lyricsStarter'>Add Lyrics:</label>
                     {lyricsState.map((lyrics, index) =>
                     (<div key={index}>
                         <label htmlFor='lyricsText'>Lyrics for Line {index + 1}:</label>
-                        <input onChange={event => handleLyricsChange(index, event)} name = 'words' type='LyricsText' value={lyricsState.words}/>
-                        <button onClick={() => handleDelLine(index)}>-</button>
+                        <input onChange={event => handleLyricsChange(index, event)} name='words' id='words' value={lyricsState.words} />
                     </div>)
                     )}
                     <div className='addLyrics_div'>
-                        <button onClick={handleAddLine}>+</button>
+                        <button type='button' onClick={handleAddLine}>+</button>
+                        <button type='button' onClick={handleDelLine}>-</button>
                     </div>
                 </div>
-                <button type ='submit' >Add Song</button>
+                <button type='submit' >Add Song</button>
             </form>
         </div>
     )

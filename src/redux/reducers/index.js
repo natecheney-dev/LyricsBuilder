@@ -20,6 +20,7 @@ const reducer = (state = initialState, action)=>{
                 songs: state.songs
             }
         case ADD_SONG:
+            console.log('test123')
             return{
                 songs: [
                     ...state.songs,
