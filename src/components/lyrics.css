@@ -50,3 +50,17 @@ button{
 .lyricsLine{
     display: flex;
 }
+
+.addSong_div{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.lyrics_div{
+    display:flex;
+    flex-direction: row;
+
+}

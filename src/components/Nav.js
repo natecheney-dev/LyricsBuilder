@@ -5,6 +5,7 @@ function Nav() {
     return (
         <div className='Nav'>
             <a href='/songs'>Songs</a>
+            <a href='/addsong'>Add Song</a>
         </div>
     );
 }
