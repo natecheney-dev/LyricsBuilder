@@ -58,7 +58,6 @@ const DisplayLyricsList = (props) => {
                     </div>
                 })}
             </div>
-                <button onClick={test}>A BUTTON</button>
         </div>
     )
 }

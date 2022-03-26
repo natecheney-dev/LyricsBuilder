@@ -101,9 +101,7 @@ export const addSong = (item, lyrics) => dispatch => {
     axios.post('http://localhost:8000/api/songs', item)
         .then(resp => {
             console.log("test123:", item);
-
             dispatch({ type: ADD_SONG, payload: item });
-
         })
         .catch(resp => {
             console.log('fail', resp)

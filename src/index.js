@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from 'react-router-dom';
-import { createStore, applyMiddleware} from 'redux';
+import { BrowserRouter } from 'react-router-dom';
+import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux'
@@ -16,9 +16,10 @@ const store = createStore(reducer, applyMiddleware(logger, thunk));
 
 
 ReactDOM.render(
-  <Provider store = { store }>
+
+  <Provider store={store}>
     <BrowserRouter>
-    <App />
+      <App />
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')

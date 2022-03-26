@@ -1,10 +1,26 @@
+
+
+
+input {
+
+    width: 100%;
+    padding: 8px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    
+  }
+
+
+
+
+
 .displaySongsDiv {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-family:Arial, Helvetica, sans-serif;
-    border: 1px solid black;
+    
+    
     
 }
 .displaySongsDiv input{
@@ -33,7 +49,17 @@ p{
 }
 button{
     margin:6px;
-    font-size:16px;
+    
+}
+
+.addSong_form label{
+    font-size:20px;
+    font-family: sans-serif;
+    color:#f6f7e2;
+}
+
+.addSong_form input{
+    background-color:#f6f7e2;
 }
 
 
@@ -44,7 +70,7 @@ button{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-family:Arial, Helvetica, sans-serif;
+    
 }
 
 .lyricsLine{
@@ -52,15 +78,133 @@ button{
 }
 
 .addSong_div{
+    background-color:hsl(240, 36%, 95%);
+    height:100vh;
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 900;
+}
+
+.addSong_form h1{
+    font-family: sans-serif;
+    color: #272753;
+    font-size:44px;
+    
 }
 
 .lyrics_div{
+    
+    display: flex;
+    
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+    width:90%;
+}
+
+
+.addSong_form{
+   
+    border: 1px solid grey;
+    width: 35%;
+    background-color:  #f1f1f1!important;
+}
+
+.addSong_form:first-child{
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.addSong_form_top{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    background-color:#272753
+   
 
 }
+.addSong_form_top_one{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:90%;
+    
+    
+}
+.addSong_form_top_two{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:90%;
+   
+
+}
+
+
+
+.addSong_form_bottom{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    background-color: #272753;
+    
+}
+
+
+
+
+.words{
+    width:100%;
+    box-sizing:border-box;
+}
+.addSong_button{
+    background-color:#272753;
+    display:flex;
+    justify-content: center;
+    width:100%;
+    
+}
+.addSong_form button{
+    font-size:20px;
+    background-color:   f1f1f1!important;
+    color: #39635f;
+}
+.addSong_form button:hover{
+    background-color: #39635f;
+    color:#f1f1f1!important;
+}
+
+.addSong_button button{
+    font-size: 30px;
+    width: 200px;
+    height: 55px;
+   
+}
+
+
+
+.song_title{
+    background-color: #f6f7e2;
+    display:flex;
+    justify-content: center;
+    width:100%;
+}
+
+/* #a26455 */
+
+/* #f1f1f1!important*/
+
+/* #f6f7e2 */
+
+/* #272753 */

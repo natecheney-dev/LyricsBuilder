@@ -20,7 +20,7 @@ const AddSong = (props) => {
     const [counter, setCounter] = useState(0)
     const [itemVals, setItemVal] = useState([])
     const [anId, setAnId] = useState(Date.now())
-    
+
 
 
 
@@ -31,7 +31,7 @@ const AddSong = (props) => {
         const time_added = parseInt(time.time_minutes * 60) + parseInt(time.time_seconds);
 
 
-        
+
         const merged = {
             id: anId,
             songName: songState.songName,
@@ -39,7 +39,7 @@ const AddSong = (props) => {
             totalTime: time_added,
         }
 
-       
+
 
         props.addSong(merged);
         props.addLyrics(lyricsState);
@@ -56,7 +56,7 @@ const AddSong = (props) => {
         })
 
         setLyricsState([])
-        
+
         setAnId(Date.now());
         setCounter(0)
 
@@ -76,7 +76,7 @@ const AddSong = (props) => {
     }
 
     const handleLyricsChange = (index, event) => {
-        
+
 
 
         setItemVal([...lyricsState]);
@@ -101,31 +101,46 @@ const AddSong = (props) => {
 
 
     return (
+
         <div className="addSong_div">
             <form onSubmit={handleSubmit} className="addSong_form">
-                <label htmlFor='song_name'>Song Name:</label>
-                <input onChange={handleChange} value={songState.songName} name="songName" id="songName" />
-                <label htmlFor='author'>Author:</label>
-                <input onChange={handleChange} value={songState.author} name="author" id="author" />
-                <div className='time_div'>
-                    <label htmlFor='totalTime'>Total Time Length:</label>
-                    <input onChange={handleTime} placeholder="Minutes" value={time.time_minutes} name="time_minutes" id="time_minutes" />
-                    <input onChange={handleTime} placeholder="Seconds" value={time.time_seconds} name="time_seconds" id="time_seconds" />
+                <div className='song_title'>
+                    <h1>Add A Song</h1>
                 </div>
-                <div className='lyrics_div'>
-                <label htmlFor='lyricsStarter'>Add Lyrics:</label>
-                    {lyricsState.map((lyrics, index) =>
-                    (<div key={index}>
-                        <label htmlFor='lyricsText'>Lyrics for Line {index + 1}:</label>
-                        <input onChange={event => handleLyricsChange(index, event)} name='words' id='words' value={lyricsState.words} />
-                    </div>)
-                    )}
-                    <div className='addLyrics_div'>
-                        <button type='button' onClick={handleAddLine}>+</button>
-                        <button type='button' onClick={handleDelLine}>-</button>
+                <div className='addSong_form_top'>
+                    <div className='addSong_form_top_one'>
+                        <label htmlFor='song_name'>Song Name:</label>
+                        <input placeholder="Song Name..." onChange={handleChange} value={songState.songName} name="songName" id="songName" />
+                        <label htmlFor='author'>Author:</label>
+                        <input placeholder="Author..." onChange={handleChange} value={songState.author} name="author" id="author" />
+
+                    </div>
+                    <div className='addSong_form_top_two'>
+                        <label htmlFor='totalTime'>Total Time Length:</label>
+                        <input onChange={handleTime} placeholder="Minutes..." value={time.time_minutes} name="time_minutes" id="time_minutes" />
+                        <input onChange={handleTime} placeholder="Seconds..." value={time.time_seconds} name="time_seconds" id="time_seconds" />
                     </div>
                 </div>
-                <button type='submit' >Add Song</button>
+                <div className='addSong_form_bottom'>
+                    <div className='lyrics_div'>
+                        <div>
+                            <label className='lyricsStater' htmlFor='lyricsStarter'>Add Lyrics:</label>
+                            {lyricsState.map((lyrics, index) =>
+                            (<div key={index}>
+                                {/* <label htmlFor='lyricsText'>Lyrics for Line {index + 1}:</label> */}
+                                <input placeholder={`Lyrics for Line ${index + 1}`} className='words' onChange={event => handleLyricsChange(index, event)} name='words' id='words' value={lyricsState.words} />
+                            </div>)
+                            )}
+                            <div className='addLyrics_div'>
+                                <button type='button' onClick={handleAddLine}>Add Line</button>
+                                <button type='button' onClick={handleDelLine}>Delete Line</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='addSong_button'>
+                    <button className='submit_button' type='submit' >Add Song</button>
+                </div>
             </form>
         </div>
     )
