@@ -10,6 +10,7 @@ import { useLocation } from 'react-router-dom'
 const DisplaySongLyrics = (props) => {
     const location = useLocation();
 
+    console.log(location.state.lyrics)
 
     return (
         <div className='renderLyrics' >

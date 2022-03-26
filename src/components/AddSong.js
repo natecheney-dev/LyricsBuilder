@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { addSong } from '../redux/actions/'
+import { addSong, addLyrics } from '../redux/actions/'
 import { connect } from 'react-redux';
 import './lyrics.css'
 import MOCK_DATA from '../MOCK_DATA.json'
@@ -19,8 +19,9 @@ const AddSong = (props) => {
     const [lyricsState, setLyricsState] = useState([])
     const [counter, setCounter] = useState(0)
     const [itemVals, setItemVal] = useState([])
+    const [anId, setAnId] = useState(Date.now())
     
-    console.log(itemVals)
+
 
 
 
@@ -30,23 +31,18 @@ const AddSong = (props) => {
         const time_added = parseInt(time.time_minutes * 60) + parseInt(time.time_seconds);
 
 
-        // setMerged({
-        //     ...merged,
-        //     id: Date.now(),
-        //     songName: songState.songName,
-        //     author: songState.author,
-        //     totalTime: time_added,
-        //     lyrics: lyricsState
-        // })
+        
         const merged = {
-            id: Date.now(),
+            id: anId,
             songName: songState.songName,
             author: songState.author,
             totalTime: time_added,
-            lyrics: lyricsState
         }
 
+       
+
         props.addSong(merged);
+        props.addLyrics(lyricsState);
 
         setTime({
             time_minutes: '',
@@ -60,9 +56,8 @@ const AddSong = (props) => {
         })
 
         setLyricsState([])
-
         
-
+        setAnId(Date.now());
         setCounter(0)
 
     }
@@ -81,12 +76,16 @@ const AddSong = (props) => {
     }
 
     const handleLyricsChange = (index, event) => {
-        console.log(itemVals);
+        
+
+
         setItemVal([...lyricsState]);
         itemVals[index][event.target.name] = event.target.value;
         itemVals[index].lineNumber = index + 1;
+        itemVals[index].song_id = anId
         setLyricsState(itemVals);
         setCounter(index);
+
 
     }
     const handleAddLine = () => {
@@ -139,4 +138,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { addSong })(AddSong);
+export default connect(mapStateToProps, { addSong, addLyrics })(AddSong);
