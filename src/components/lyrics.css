@@ -55,11 +55,11 @@ button{
 .addSong_form label{
     font-size:20px;
     font-family: sans-serif;
-    color:#f6f7e2;
+    color:#f1f1f1!important;
 }
 
 .addSong_form input{
-    background-color:#f6f7e2;
+    background-color:#f1f1f1!important;
 }
 
 
@@ -78,7 +78,7 @@ button{
 }
 
 .addSong_div{
-    background-color:hsl(240, 36%, 95%);
+    background-color:hsla(240, 41%, 90%, 0.83);
     height:100vh;
     display:flex;
     flex-direction: column;
@@ -90,7 +90,7 @@ button{
 .addSong_form h1{
     font-family: sans-serif;
     color: #272753;
-    font-size:44px;
+    font-size:36px;
     
 }
 
@@ -121,12 +121,13 @@ button{
 
 
 .addSong_form_top{
+    padding-top:10px;
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width:100%;
-    background-color:#272753
+    background-color:#272753;
    
 
 }
@@ -169,15 +170,18 @@ button{
     box-sizing:border-box;
 }
 .addSong_button{
+    border-top: 1px solid #f1f1f1!important;
     background-color:#272753;
     display:flex;
     justify-content: center;
     width:100%;
+    padding-top:5px;
+    padding-bottom:5px;
     
 }
 .addSong_form button{
     font-size:20px;
-    background-color:   f1f1f1!important;
+    
     color: #39635f;
 }
 .addSong_form button:hover{
@@ -187,19 +191,56 @@ button{
 
 .addSong_button button{
     font-size: 30px;
-    width: 200px;
-    height: 55px;
+    width: 165px;
+    height: 40px;
    
 }
 
 
 
 .song_title{
-    background-color: #f6f7e2;
+    
+    background-color: #f1f1f1!important;
     display:flex;
     justify-content: center;
     width:100%;
 }
+
+.Nav{
+    display:flex;
+    background-color:#272753;
+    height:40px;
+    align-items: center;
+    
+    width:100%;
+    
+}
+.Hrefs{
+    display:flex;
+    width:12%;
+    align-items: center;
+    justify-content: space-between;
+    padding:20px;
+}
+
+.Nav a{
+    padding:5px;
+    color: #f1f1f1;
+    font-size:16px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.Nav a:hover{
+    background-color: hsla(240, 41%, 90%, 0.83); 
+    border:1px solid black;
+    color: #272753;
+}
+
+.addLyrics_div{
+    padding-bottom: 5px;
+}
+
 
 /* #a26455 */
 
@@ -208,3 +249,5 @@ button{
 /* #f6f7e2 */
 
 /* #272753 */
+
+/* hsla(240, 41%, 90%, 0.83); */
